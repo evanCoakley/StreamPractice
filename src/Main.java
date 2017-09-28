@@ -27,20 +27,19 @@ public class Main {
     public static void printTuesdays(List<Entry> entries) {
 
         //Print out tuesday entries
-        System.out.println("For Loop:");
+        System.out.println("For TUES Loop:");
         // write for loop
         for(Entry entry : entries){
             if(entry.getDay().equals(Day.TUESDAY)) {
                 System.out.println(entry);
             }
         }
-        System.out.println("\nStream, filter, forEach:");
-        entries.stream()
-            .filter(entry -> entry.getDay() == Day.TUESDAY)
-            .map(entry -> entry.getNote())
-            .collect(Collectors.toList());
+        System.out.println("\nTUES Stream, filter, forEach:");
+        List<Entry> tueEntry = entries.stream()
+                .filter(entry -> entry.getDay() == Day.TUESDAY)
+                .collect(Collectors.toList());
         // write stream
-        System.out.println(entries);
+        System.out.println(tueEntry);
     }
 
     public static void countTueWedThur(List<Entry> entries) {
@@ -96,14 +95,18 @@ public class Main {
         System.out.println(weekdays);
         System.out.println("Stream, filter, map, collect:");
         weekdays = entries.stream()
-                .filter(entry -> entry.getDay().equals(Day.TUESDAY) || entry.getDay().equals(Day.FRIDAY) ||
-                entry.getDay().equals(Day.MONDAY) || entry.getDay().equals(Day.THURSDAY) || entry.getDay().equals(Day.WEDNESDAY))
+                .filter(entry ->
+                        (!entry.getDay().equals(Day.SATURDAY) && !entry.getDay().equals(Day.SUNDAY))
+                )
                 .map(entry -> entry.toString())
                 .collect(Collectors.toSet());
 //                .
         System.out.println(weekdays);
         System.out.println();
     }
-
-
 }
+
+/*
+.filter(entry -> entry.getDay().equals(Day.TUESDAY) || entry.getDay().equals(Day.FRIDAY) ||
+                entry.getDay().equals(Day.MONDAY) || entry.getDay().equals(Day.THURSDAY) || entry.getDay().equals(Day.WEDNESDAY))
+ */
